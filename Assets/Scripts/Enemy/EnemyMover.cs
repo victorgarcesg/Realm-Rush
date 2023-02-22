@@ -9,7 +9,7 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] float speed = 1f;
     private List<Waypoint> path = new List<Waypoint>();
 
-    private void Start()
+    private void OnEnable()
     {
         FindPath();
         ResetToStart();
@@ -53,6 +53,6 @@ public class EnemyMover : MonoBehaviour
             }
         }
 
-        Destroy(gameObject); // destroy if enemy gets to the end of the path
+        gameObject.SetActive(false); // disables enemy if gets to the end of the path
     }
 }
