@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3144582324300694500}
+  projectileParticles: {fileID: 1283676572067815258}
+  range: 15
 --- !u!1 &3412018146056468092
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +61,7 @@ GameObject:
   - component: {fileID: 1283676572067815258}
   - component: {fileID: 7659006580082225605}
   m_Layer: 0
-  m_Name: ArrowPartycleSystem
+  m_Name: ProjectilePartycleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
