@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] [Range(0f, 5f)] float speed = 1f;
@@ -29,7 +30,11 @@ public class EnemyMover : MonoBehaviour
         Transform parent = GameObject.FindGameObjectWithTag("Path").transform;
         foreach (Transform child in parent)
         {
-            path.Add(child.GetComponent<Waypoint>());
+            var waypoint = child.GetComponent<Waypoint>();
+            if (waypoint != null)
+            {
+                path.Add(waypoint);
+            }
         }
     }
 
@@ -59,10 +64,10 @@ public class EnemyMover : MonoBehaviour
             }
         }
 
-        ReachEndOfPath();
+        FinishPath();
     }
 
-    private void ReachEndOfPath()
+    private void FinishPath()
     {
         gameObject.SetActive(false); // disables enemy if gets to the end of the path
         enemy.StealGold();

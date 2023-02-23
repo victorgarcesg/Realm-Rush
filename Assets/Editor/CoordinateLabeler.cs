@@ -1,8 +1,11 @@
 using UnityEngine;
 using TMPro;
-using System;
 
+/*
+    Unity can't build files using that use the UnityEditor. Move this file to the Editor folder in order to be ignored.
+*/
 [ExecuteAlways]
+[RequireComponent(typeof(TextMeshPro))]
 public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
@@ -29,11 +32,11 @@ public class CoordinateLabeler : MonoBehaviour
             UpdateObjectName();
         }
 
-        ColorCoordinates();
+        SetLabelColor();
         ToggleLabels();
     }
 
-    private void ColorCoordinates()
+    private void SetLabelColor()
     {
         if (waypoint.IsPlaceable)
         {
