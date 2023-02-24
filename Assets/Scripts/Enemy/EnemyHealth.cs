@@ -7,9 +7,15 @@ public class EnemyHealth : MonoBehaviour
 
     [Tooltip("Adds amount to maxHitPoint when enemy dies.")]
     [SerializeField] int difficultyRamp = 2;
+    [SerializeField] float speedRamp = 0.25f;
+
+    [Tooltip("Numbers of deaths required to apply speed ramp")]
+    [SerializeField] int deaths = 5;
+    int currentDeaths = 0;
 
     int currentHitPoints = 0;
     Enemy enemy;
+    EnemyMover mover;
 
     private void OnEnable()
     {
@@ -19,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         enemy = GetComponent<Enemy>();
+        mover = GetComponent<EnemyMover>();
     }
 
     private void OnParticleCollision(GameObject other)
@@ -34,6 +41,11 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
+            currentDeaths++;
+            if (currentDeaths == deaths && mover != null)
+            {
+                mover.IncreaseSpeed(speedRamp);
+            }
             gameObject.SetActive(false);
             maxHitPoints += difficultyRamp;
             enemy.RewardGold();

@@ -72,4 +72,9 @@ public class EnemyMover : MonoBehaviour
         gameObject.SetActive(false); // disables enemy if gets to the end of the path
         enemy.StealGold();
     }
+
+    public void IncreaseSpeed(float speedRamp)
+    {
+        speed += speedRamp;
+    }
 }
