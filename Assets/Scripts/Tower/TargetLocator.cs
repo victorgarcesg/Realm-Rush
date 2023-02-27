@@ -9,6 +9,11 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] ParticleSystem projectileParticles;
     [SerializeField] float range = 15f;
     Transform target;
+
+    private void Start()
+    {
+        Attack(false);
+    }
     
     private void Update()
     {

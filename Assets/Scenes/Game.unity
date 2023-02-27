@@ -28175,7 +28175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b051162a8d16ac14d885a1cd5a2ddfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 5, y: 5}
+  gridSize: {x: 10, y: 10}
+  unityGridSize: 10
 --- !u!4 &1518191359
 Transform:
   m_ObjectHideFlags: 0
@@ -40455,6 +40456,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669551545196888218, guid: 3470a3e0a89115740b594ff7c6143d91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669551545196888219, guid: 3470a3e0a89115740b594ff7c6143d91, type: 3}
+      propertyPath: poolSize
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

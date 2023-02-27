@@ -31,11 +31,14 @@ public class Pathfinder : MonoBehaviour
     
     void Start()
     {
-        startNode = gridManager.Grid[startCoordinates];
-        destinationNode = gridManager.Grid[destinationCoordinates];
+        if (grid.ContainsKey(startCoordinates) && grid.ContainsKey(destinationCoordinates))
+        {
+            startNode = gridManager.Grid[startCoordinates];
+            destinationNode = gridManager.Grid[destinationCoordinates];
 
-        BreadthFirstSearch();
-        BuildPath();
+            BreadthFirstSearch();
+            BuildPath();
+        }
     }
 
     private void BreadthFirstSearch()
