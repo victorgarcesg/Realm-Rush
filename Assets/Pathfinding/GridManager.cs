@@ -53,6 +53,16 @@ public class GridManager : MonoBehaviour
         return position;
     }
 
+    public void ResetNodes()
+    {
+        foreach (var entry in grid)
+        {
+            entry.Value.connectedTo = null;
+            entry.Value.isExplored = false;
+            entry.Value.isPath = false;
+        }
+    }
+
     private void CreateGrid()
     {
         for (int x = 0; x < gridSize.x; x++)
