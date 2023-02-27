@@ -35,6 +35,7 @@ public class Pathfinder : MonoBehaviour
         destinationNode = gridManager.Grid[destinationCoordinates];
 
         BreadthFirstSearch();
+        BuildPath();
     }
 
     private void BreadthFirstSearch()
@@ -55,8 +56,6 @@ public class Pathfinder : MonoBehaviour
                 isRunnning = false;
             }
         }
-
-        BuildPath();
     }
 
     private void ExploreNeighbors()
@@ -72,7 +71,7 @@ public class Pathfinder : MonoBehaviour
 
         foreach (Node neighbor in neighbors)
         {
-            if(!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
+            if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
             {
                 neighbor.connectedTo = currentSearchNode;
                 reached.Add(neighbor.coordinates, neighbor);
