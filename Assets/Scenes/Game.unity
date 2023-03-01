@@ -41608,6 +41608,10 @@ PrefabInstance:
       propertyPath: displayBalance
       value: 
       objectReference: {fileID: 249412387}
+    - target: {fileID: 8939123468128884272, guid: 0207fc89c71cc9540b57d1af5348c3a7, type: 3}
+      propertyPath: startingBalance
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 8939123468128884273, guid: 0207fc89c71cc9540b57d1af5348c3a7, type: 3}
       propertyPath: m_Name
       value: Bank

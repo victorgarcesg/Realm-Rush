@@ -15,9 +15,8 @@ public class EnemyMover : MonoBehaviour
 
     private void OnEnable()
     {
-        FindPath();
         ResetToStart();
-        StartCoroutine(FollowPath());
+        RecalculatePath(true);
     }
 
     private void Awake()
@@ -27,10 +26,15 @@ public class EnemyMover : MonoBehaviour
         pathfinder = FindObjectOfType<Pathfinder>();
     }
 
-    private void FindPath()
+    private void RecalculatePath(bool resetPath)
     {
+        Vector2Int coordinates = new Vector2Int();
+        coordinates = resetPath ? pathfinder.StartCoordinates : gridManager.GetCoordinatesFromPosition(transform.position);
+
+        StopAllCoroutines();
         path.Clear();
-        path = pathfinder.GetNewPath();
+        path = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(FollowPath());
     }
 
     private void ResetToStart()
@@ -43,7 +47,8 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator FollowPath()
     {
-        for (int i = 0; i < path.Count; i++)
+        // it's i = 1 because the first node is the destination node, and we want the start on the node connected to on recalculation
+        for (int i = 1; i < path.Count; i++)
         {
             var startPosition = transform.position;
             var endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
