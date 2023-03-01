@@ -8,8 +8,10 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] [Range(0f, 5f)] float speed = 1f;
-    private List<Tile> path = new List<Tile>();
+    private List<Node> path = new List<Node>();
     Enemy enemy;
+    GridManager gridManager;
+    Pathfinder pathfinder;
 
     private void OnEnable()
     {
@@ -18,40 +20,33 @@ public class EnemyMover : MonoBehaviour
         StartCoroutine(FollowPath());
     }
 
-    private void Start()
+    private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<Pathfinder>();
     }
 
     private void FindPath()
     {
         path.Clear();
-
-        Transform parent = GameObject.FindGameObjectWithTag("Path").transform;
-        foreach (Transform child in parent)
-        {
-            var waypoint = child.GetComponent<Tile>();
-            if (waypoint != null)
-            {
-                path.Add(waypoint);
-            }
-        }
+        path = pathfinder.GetNewPath();
     }
 
     private void ResetToStart()
     {
         if (path.Count() > 0)
         {
-            transform.position = path[0].transform.position;
+            transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
         }
     }
 
     private IEnumerator FollowPath()
     {
-        foreach (var waypoint in path)
+        for (int i = 0; i < path.Count; i++)
         {
             var startPosition = transform.position;
-            var endPosition = waypoint.transform.position;
+            var endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
             transform.LookAt(endPosition);
 
             float travelPercent = 0f;

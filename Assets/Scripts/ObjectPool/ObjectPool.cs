@@ -8,7 +8,6 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] [Range(0, 50)] int poolSize = 5;
     private GameObject[] pool;
-    private Transform pathStart;
 
     private void Awake()
     {
